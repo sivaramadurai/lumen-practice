@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Department;
 
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
@@ -18,15 +19,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email','department_id',
     ];
+
+    protected $attributes = [
+        'deleted' => 0,
+        'department_id' => 0,
+        
+     ];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = [
-        'password',
-    ];
+    public function departments(){
+        return $this->hasOne('App\Department');
+      } 
+   
 }

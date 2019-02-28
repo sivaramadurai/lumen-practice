@@ -14,3 +14,18 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix'=>'api'],function() use ($router){
+
+    $router->post('user',['uses'=>'UsersController@create']);
+    $router->get('users',['uses'=>'UsersController@index']);
+    
+    $router->post('department',['uses'=>'DepartmentController@create']);
+    $router->get('departments',['uses'=>'DepartmentController@index']); 
+    $router->put('department/{id}',['uses'=>'DepartmentController@update']);
+    $router->delete('department/{id}',['uses'=>'DepartmentController@delete']);
+    
+
+
+});
+
